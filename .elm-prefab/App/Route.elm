@@ -50,7 +50,7 @@ toString route =
 
         List params ->
             AppUrl.toString
-                { path = [ "list" ]
+                { path = [ "pokedex" ]
                 , queryParameters = Dict.empty
                 , fragment = Nothing
                 }
@@ -102,7 +102,7 @@ parseAppUrl appUrl =
         [ "detail", id ] ->
             Just { route = Detail { id = id }, isRedirect = False }
 
-        [ "list" ] ->
+        [ "pokedex" ] ->
             Just { route = List {}, isRedirect = False }
 
         _ ->

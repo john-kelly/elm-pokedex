@@ -125,19 +125,16 @@
             width: 75%;
             height: 100vh;
             overflow: auto;
+            /* hack? issue on ios */
+            overflow-x: hidden;
         }
 
         @media only screen and (max-width: 720px) {
-            body:has(div.wrapper) {overflow: hidden}
-            html:has(div.wrapper) {overflow: hidden}
-
             .wrapper {
                 display: flex;
                 flex-direction: column;
                 flex-flow: wrap-reverse;
                 height: 100vh;
-                /* hack? issue on ios */
-                overflow: hidden;
             }
 
             .right {
@@ -145,21 +142,18 @@
                 background-color: white;
                 height: 25%;
                 border-bottom: 1px solid gray;
-                /* hack? issue on ios */
-                overflow: hidden;
             }
 
             .left {
                 width: 100%;
                 height: 75%;
                 overflow: auto;
-                overflow-x: hidden;
             }
         }
     </style>
 
 
-    <script type="module" src="/main.ts"></script>
+    <script type="module" crossorigin src="/assets/index-BI0yZjqM.js"></script>
   </head>
   <body></body>
 </html>

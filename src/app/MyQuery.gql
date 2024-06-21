@@ -1,4 +1,4 @@
-query SpecificPokemon($pokemonid: Int) {
+query SpecificPokemon($pokemonid: Int!) {
   pokemon_v2_pokemon(where: {pokemon_species_id: {_eq: $pokemonid}}) {
     name
     id

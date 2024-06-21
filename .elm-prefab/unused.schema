@@ -326,7 +326,6 @@ query {
     pokemon_v2_pokedexversiongroup
     pokemon_v2_pokedexversiongroup_aggregate
     pokemon_v2_pokedexversiongroup_by_pk
-    pokemon_v2_pokemon
     pokemon_v2_pokemon_aggregate
     pokemon_v2_pokemon_by_pk
     pokemon_v2_pokemonability
@@ -389,6 +388,7 @@ query {
     pokemon_v2_pokemonshapename
     pokemon_v2_pokemonshapename_aggregate
     pokemon_v2_pokemonshapename_by_pk
+    pokemon_v2_pokemonspecies
     pokemon_v2_pokemonspecies_aggregate
     pokemon_v2_pokemonspecies_by_pk
     pokemon_v2_pokemonspeciesdescription
@@ -10723,7 +10723,6 @@ type pokemon_v2_pokedexversiongroup_variance_fields {
 
 type pokemon_v2_pokemon {
     base_experience
-    height
     is_default
     order
     pokemon_species_id
@@ -10733,7 +10732,6 @@ type pokemon_v2_pokemon {
     pokemon_v2_pokemonabilities_aggregate
     pokemon_v2_pokemonabilitypasts
     pokemon_v2_pokemonabilitypasts_aggregate
-    pokemon_v2_pokemoncries
     pokemon_v2_pokemoncries_aggregate
     pokemon_v2_pokemonforms
     pokemon_v2_pokemonforms_aggregate
@@ -10744,13 +10742,11 @@ type pokemon_v2_pokemon {
     pokemon_v2_pokemonmoves
     pokemon_v2_pokemonmoves_aggregate
     pokemon_v2_pokemonspecy
-    pokemon_v2_pokemonsprites
     pokemon_v2_pokemonsprites_aggregate
     pokemon_v2_pokemonstats
     pokemon_v2_pokemonstats_aggregate
     pokemon_v2_pokemontypepasts
     pokemon_v2_pokemontypepasts_aggregate
-    pokemon_v2_pokemontypes
     pokemon_v2_pokemontypes_aggregate
     weight
 }
@@ -11237,7 +11233,6 @@ type pokemon_v2_pokemoncolorname_variance_fields {
 }
 
 type pokemon_v2_pokemoncries {
-    cries
     id
     pokemon_id
     pokemon_v2_pokemon
@@ -12918,9 +12913,11 @@ type pokemon_v2_pokemonspecies {
     growth_rate_id
     has_gender_differences
     hatch_counter
+    id
     is_baby
     is_legendary
     is_mythical
+    name
     order
     pokemonV2PokemonevolutionsByPartySpeciesId
     pokemonV2PokemonevolutionsByPartySpeciesId_aggregate
@@ -13609,7 +13606,6 @@ type pokemon_v2_pokemontype {
     id
     pokemon_id
     pokemon_v2_pokemon
-    pokemon_v2_type
     slot
     type_id
 }
@@ -14431,7 +14427,6 @@ type pokemon_v2_type {
     generation_id
     id
     move_damage_class_id
-    name
     pokemonV2PokemonevolutionsByPartyTypeId
     pokemonV2PokemonevolutionsByPartyTypeId_aggregate
     pokemonV2TypeefficaciesByTargetTypeId

@@ -35,7 +35,7 @@ type alias Params =
 
 {-| -}
 type alias Model =
-    {pokemon: List AllPokemonWithSprites.Pokemon_v2_pokemonsprites, error: String}
+    {pokemon: List AllPokemonWithSprites.Pokemon_v2_pokemonsprites, error: String, open: Bool}
 
 
 {-| -}
@@ -43,6 +43,7 @@ type Msg
     = ReceivePokemonData AllPokemonWithSprites.Response
     | SomeError GraphQL.Engine.Error
     | ClickedLink String
+    | CloseDetails
 
 
 emptyResponse = { pokemon_v2_pokemonsprites = []}
@@ -81,7 +82,7 @@ init params resources maybeCached =
     --this adds caching! wow...
     case maybeCached of
         Just model -> App.Page.init model
-        Nothing -> App.Page.initWith {pokemon=[], error=""} (App.Effect.Graphql myQuery SomeError)
+        Nothing -> App.Page.initWith {pokemon=[], error="", open=False} (App.Effect.Graphql myQuery SomeError)
 
 
 update : App.Resources.Resources -> Msg -> Model -> ( Model, App.Effect.Effect Msg )
@@ -90,9 +91,11 @@ update resources msg model =
         ReceivePokemonData {pokemon_v2_pokemonsprites} ->
             ( {model | pokemon = pokemon_v2_pokemonsprites}, App.Effect.none )
         SomeError error ->
-            ( {model | error = Debug.toString error}, App.Effect.none )
+            ( {model | error = ""}, App.Effect.none )
         ClickedLink pokemonid ->
-            ( model, App.Effect.loadAt App.View.Id.Detail (App.Page.Id.Detail {id=pokemonid}) )
+            ( {model| open=True}, App.Effect.loadAt App.View.Id.Detail (App.Page.Id.Detail {id=pokemonid}) )
+        CloseDetails ->
+            ( {model|open=False}, App.Effect.clear App.View.Id.Detail)
 
 
 subscriptions : App.Resources.Resources -> Model -> App.Sub.Sub Msg
@@ -104,11 +107,12 @@ view : App.View.Id.Id -> App.Resources.Resources -> Model -> App.View.View Msg
 view viewId resources model =
     let
         children = List.map renderPokemon model.pokemon
-        pokemon = Html.div [Html.Attributes.style "justify-content" "center"] children
+        pokemon = Html.div [Html.Attributes.style "justify-content" "center", Html.Attributes.style "display" "flex", Html.Attributes.style "flex-wrap" "wrap"] children
         error = Html.text model.error
+        close = Html.div [Html.Events.onClick CloseDetails, Html.Attributes.style "position" "fixed", Html.Attributes.style "right" "0", Html.Attributes.style "padding" "3px", Html.Attributes.style "cursor" "pointer"] [Html.text "➡️"]
     in
-    { title = "List"
-    , body = Html.div [] [error, pokemon]
+    { title = "Pokedex"
+    , body = Html.div [] [pokemon]
     }
 
 renderSprite : AllPokemonWithSprites.Pokemon_v2_pokemonsprites -> Html.Html msg
@@ -123,7 +127,7 @@ renderPokemon pokemonsprite =
         pokemonlink pokemon = Html.button
             [ Html.Events.onClick (ClickedLink (String.fromInt pokemon.id)) ]
             --[ Html.Attributes.href (App.Route.toString (App.Route.Detail {id=pokemon.name})) ]
-            [ Html.text pokemon.name, renderSprite pokemonsprite ]
+            [ renderSprite pokemonsprite ]
     in
     case pokemonsprite.pokemon_v2_pokemon of
         Just pokemon -> pokemonlink pokemon

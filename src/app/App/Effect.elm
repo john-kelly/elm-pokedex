@@ -3,7 +3,7 @@ port module App.Effect exposing
     , now, nowAfter
     , navigateTo, pushUrl, replaceUrl
     , forward, back
-    , preload, load, loadAt, reload
+    , preload, load, loadAt, reload, clear
     , sendMsg, sendMsgAfter
     , saveToLocalStorage, clearLocalStorageKey
     , generate

@@ -177,11 +177,13 @@ viewLayout resources toAppMsg model regions =
         Just region ->
             case regions.detail of
                 [] -> viewRegion resources toAppMsg model region
-                first :: rest -> Html.div
-                    [ Html.Attributes.style "display" "flex", Html.Attributes.style "flex-direction" "row"]
+                _ -> Html.div
+                    [ Html.Attributes.class "wrapper" ]
                     [ Html.div [Html.Attributes.class "left"] [viewRegion resources toAppMsg model region]
-                    , Html.div [Html.Attributes.class "right"] [viewRegion resources toAppMsg model first]
+                    , Html.div [Html.Attributes.class "right"] (List.map (viewRegion resources toAppMsg model) regions.detail)
                     ]
+
+
 
 
 viewRegion :

@@ -4,7 +4,7 @@
   "app": {
     "pages": {
       "Home": "/",
-      "List": "/list/",
+      "List": "/pokedex/",
       "Detail": "/detail/:id"
     }
   },

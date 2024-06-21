@@ -12,6 +12,7 @@ port module App.Effect exposing
     , copyToClipboard
     , get, request, Expect, expectString, expectJson, expectBytes, expectWhatever
     , toCmd, sendToJs, sendToResource
+    , playSound
     )
 
 {-|
@@ -212,6 +213,14 @@ clearLocalStorageKey key =
                     [ ( "key", Json.Encode.string key )
                     ]
                 )
+        }
+
+
+playSound : String -> Effect msg
+playSound sound =
+    SendToWorld
+        { tag = "play-sound"
+        , details = Just (Json.Encode.string sound)
         }
 
 

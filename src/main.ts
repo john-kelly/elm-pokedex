@@ -27,6 +27,11 @@ app.ports?.outgoing?.subscribe?.((message: any) => {
       Clipboard.copy(message.details);
       break;
 
+    case "play-sound":
+        var audio = new Audio(message.details);
+        audio.play();
+        break;
+
     default:
       break;
   }

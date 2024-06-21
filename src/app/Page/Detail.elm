@@ -20,6 +20,7 @@ import App.Route
 import App.MyQuery.SpecificPokemon as SpecificPokemon
 import Api
 import Html
+import Html.Events
 import Html.Attributes
 import Debug
 import GraphQL.Engine
@@ -47,6 +48,7 @@ type alias Model =
 type Msg
     = ReceivePokemonData SpecificPokemon.Response
     | SomeError GraphQL.Engine.Error
+    | ClickSoundButton
 
 
 page : App.Page.Page App.Resources.Resources Params Msg Model
@@ -95,6 +97,9 @@ update resources msg model =
             ( {model | pokemon = pokemon_v2_pokemon, audio=audio, sprites=sprites, maybepokemon=maybepokemon}, App.Effect.none )
         SomeError error ->
             ( {model | error = Nothing}, App.Effect.none )
+        ClickSoundButton ->
+            ( model, App.Effect.playSound (Maybe.withDefault "" model.audio) )
+
 
 
 subscriptions : App.Resources.Resources -> Model -> App.Sub.Sub Msg
@@ -122,7 +127,7 @@ view viewId resources model =
         audioplayer =
             case model.audio of
                 Just ex ->
-                    Html.node "audio" [Html.Attributes.controls True] [Html.node "source" [Html.Attributes.src ex, Html.Attributes.type_ "audio/ogg", Html.Attributes.preload "none"] []]
+                    Html.button [Html.Events.onClick ClickSoundButton, Html.Attributes.style "margin" "auto", Html.Attributes.style "border" "none", Html.Attributes.style "font-size" "30px"] [Html.text "🗣️"]
 
                 Nothing ->
                     Html.text ""

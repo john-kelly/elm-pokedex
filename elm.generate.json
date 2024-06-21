@@ -1,0 +1,15 @@
+{
+  "src": "src/app",
+  "js": "src",
+  "app": {
+    "pages": {
+      "Home": "/",
+      "List": "/list/",
+      "Detail": "/detail/:id"
+    }
+  },
+  "graphql": {
+    "schema": "https://beta.pokeapi.co/graphql/v1beta",
+    "header": []
+  }
+}

@@ -1,0 +1,19 @@
+query SpecificPokemon($pokemonid: Int) {
+  pokemon_v2_pokemon(where: {pokemon_species_id: {_eq: $pokemonid}}) {
+    name
+    id
+    height
+    pokemon_v2_pokemoncries {
+      cries
+    }
+    pokemon_v2_pokemonsprites {
+      sprites
+    }
+    pokemon_v2_pokemontypes {
+      pokemon_v2_type {
+        name
+      }
+    }
+  }
+}
+

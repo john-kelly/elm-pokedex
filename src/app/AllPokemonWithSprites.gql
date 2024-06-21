@@ -1,0 +1,9 @@
+query AllPokemonWithSprites {
+  pokemon_v2_pokemonsprites {
+    sprites(path: "front_default")
+    pokemon_v2_pokemon {
+      name
+      id
+    }
+  }
+}

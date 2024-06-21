@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Elm App</title>
+    <!--  -->
+
+    <style>
+        /*
+          1. Use a more-intuitive box-sizing model.
+        */
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        /*
+          2. Remove default margin
+        */
+        * {
+          margin: 0;
+        }
+        /*
+          Typographic tweaks!
+          3. Add accessible line-height
+          4. Improve text rendering
+        */
+        body {
+          line-height: 1.5;
+          -webkit-font-smoothing: antialiased;
+        }
+        /*
+          5. Improve media defaults
+        */
+        img, picture, video, canvas, svg {
+          display: block;
+          max-width: 100%;
+        }
+        /*
+          6. Remove built-in form typography styles
+        */
+        input, button, textarea, select {
+          font: inherit;
+        }
+        /*
+          7. Avoid text overflows
+        */
+        p, h1, h2, h3, h4, h5, h6 {
+          overflow-wrap: break-word;
+        }
+        /*
+          8. Create a root stacking context
+        */
+        #root, #__next {
+          isolation: isolate;
+        }
+
+        :root {
+          --shadow-color: 0deg 0% 0%;
+          --shadow-elevation-low:
+            -0.5px 0px 0.4px hsl(var(--shadow-color) / 0.31),
+            -0.7px 0px 0.5px -2.5px hsl(var(--shadow-color) / 0.21),
+            -2.3px 0px 1.7px -5px hsl(var(--shadow-color) / 0.1);
+          --shadow-elevation-medium:
+            -0.5px 0px 0.4px hsl(var(--shadow-color) / 0.26),
+            -0.6px 0px 0.5px -1.2px hsl(var(--shadow-color) / 0.21),
+            -1.8px 0px 1.4px -2.5px hsl(var(--shadow-color) / 0.16),
+            -5.1px 0.1px 3.8px -3.7px hsl(var(--shadow-color) / 0.11),
+            -11.5px 0.2px 8.6px -5px hsl(var(--shadow-color) / 0.05);
+          --shadow-elevation-high:
+            -0.5px 0px 0.4px hsl(var(--shadow-color) / 0.24),
+            -0.6px 0px 0.5px -0.6px hsl(var(--shadow-color) / 0.22),
+            -1.2px 0px 0.9px -1.1px hsl(var(--shadow-color) / 0.2),
+            -3px 0px 2.3px -1.7px hsl(var(--shadow-color) / 0.17),
+            -6.5px 0.1px 4.9px -2.2px hsl(var(--shadow-color) / 0.15),
+            -12.2px 0.2px 9.2px -2.8px hsl(var(--shadow-color) / 0.12),
+            -20.8px 0.3px 15.6px -3.3px hsl(var(--shadow-color) / 0.1),
+            -32.8px 0.5px 24.6px -3.9px hsl(var(--shadow-color) / 0.07),
+            -48.7px 0.7px 36.5px -4.4px hsl(var(--shadow-color) / 0.05),
+            -69.1px 1.1px 51.8px -5px hsl(var(--shadow-color) / 0.02);
+        }
+
+        div {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        a {
+            display: flex;
+            flex-direction: column;
+            width: 100px;
+            border: 1px solid;
+            padding: 2px;
+            margin: 2px;
+            border-radius: 3px;
+        }
+
+        .right {
+            width: 20%;
+            left-border: 1px solid gray;
+            box-shadow: var(--shadow-elevation-medium);
+            padding: 15px;
+        }
+
+        button {
+            display: flex;
+            flex-direction: column;
+            width: 100px;
+        }
+
+        .left {
+            width: 80%;
+            height: 100vh;
+            overflow: auto;
+        }
+    </style>
+
+
+    <script type="module" src="/main.ts"></script>
+  </head>
+  <body></body>
+</html>
